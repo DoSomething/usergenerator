@@ -5,8 +5,8 @@ var chance = new Chance();
 var argv = require('minimist')(process.argv.slice(2));
 
 var settings = {};
-settings.campaign = argv.c || '1485';
-settings.run = argv.n || '1860';
+settings.campaign = argv.campaign || '1485';
+settings.run = argv.run || '1860';
 settings.totalUsers = argv.u || 5;
 settings.signup = argv.s || false;
 settings.reportback = argv.r || false;
@@ -168,5 +168,4 @@ request
     phoenixSettings.token = res.body.token;
 
     createUser();
-    // signupUser({drupal_id: 1706541});
   });
