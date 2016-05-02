@@ -1,4 +1,3 @@
-var secrets = require(__dirname + '/secrets');
 var request = require('superagent');
 var Chance = require('chance');
 var chance = new Chance();
@@ -12,6 +11,9 @@ settings.signup = argv.s || false;
 settings.reportback = argv.r || false;
 settings.gladiator = argv.g || false;
 settings.log = argv.l || true;
+settings.secrets = argv.secrets || 'staging';
+
+var secrets = require(__dirname + '/secrets/' + settings.secrets);
 
 var NORTHSTAR_URL = secrets.northstar_url + '/' + secrets.northstar_version + '/';
 var NORTHSTAR_API_KEY = secrets.northstar_key;
@@ -150,6 +152,7 @@ function gladiatorUser(user) {
     campaign_id: settings.campaign,
     campaign_run_id: settings.run
   }, function(res) {
+    console.log(res.body);
     console.log("Gladiated user " + user.id);
   });
 }
